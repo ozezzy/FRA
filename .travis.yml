@@ -1,11 +1,11 @@
 language: python
 python:
-  - "3.7"
+  - "3.6"
 install:
   - pip install -r requirements.txt
 
 script:
-  - coverage run test.py
+  - coverage run --source=FRA test.py
 
 after_success:
   - codecov
