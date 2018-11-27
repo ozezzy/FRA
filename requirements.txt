@@ -1,16 +1,10 @@
-atomicwrites==1.2.1
-attrs==18.2.0
-autopep8==1.4.3
 Click==7.0
 coverage==4.5.2
 Flask==1.0.2
 Flask-SQLAlchemy==2.3.2
+gunicorn==19.9.0
 itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.0
-more-itertools==4.3.0
-pluggy==0.8.0
-py==1.7.0
-six==1.11.0
 SQLAlchemy==1.2.14
 Werkzeug==0.14.1
