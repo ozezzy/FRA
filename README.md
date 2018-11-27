@@ -28,16 +28,17 @@ clone repo and cd into directory
 
 # install dependencies
 
-### `pip install -r requirements.txt`
+ `pip install -r requirements.txt`
 
-#serve in development environment
-## run `python seed.py && python app.py `
+# serve in development environment
+
+run `python seed.py && python app.py `
 
 ## Testing
 
 Testing with coverage data
 
-## `coverage run test.py && coverage report FRA/*.py`
+`coverage run test.py && coverage report FRA/*.py`
 
 ## AUTHOR
 Godswill 
