@@ -1,0 +1,89 @@
+.navbar-brand{
+    font-weight: 900;
+    color: #A32323;
+}
+/* 
+.bg-light{
+   box-shadow: 5px 1px #A32323;
+} */
+
+.container.form-title{
+    margin-top:20px;
+}
+
+.form-container{
+    margin-top: 5px;
+    width: 95%;
+    background: #F9EFF3;
+    padding: 50px;
+    padding-bottom: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 520px){
+    .form-container{
+        margin-top: 20px;
+        width: 500px;
+    }
+}
+
+label{
+    margin-bottom: 0;
+    color: #777;
+    font-weight: 400;
+}
+
+.form-title{
+    text-align: center;
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.btn-custom {
+    background: #414141;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login > .form-group{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.float-right{
+    margin-right: 15px;
+}
+footer{
+    position: relative;
+    width: 100vw;
+    height: 50px;
+    padding-top: 10px;
+    text-align: center;
+    bottom: 0;
+}
+/* modal style */
+.modal-content{
+    margin-top: 70px;
+}
+.modal-body{
+    width: 95%;
+    background: #D9D0D0;
+    padding-bottom: 70px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* table styles */
+.feature-table > thead {
+    color: #fff;
+    font-weight: 100;
+    background: rgb(64, 55, 55);
+}
+.feature-table > tbody > tr:hover{
+    cursor: pointer;
+    background: #D9D0D0;
+} 

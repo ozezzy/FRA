@@ -1,0 +1,7 @@
+venv
+.DS_Store
+.coverage
+__pycache__
+feature_requests.db
+tests/
+FRA/__init__.pyc
