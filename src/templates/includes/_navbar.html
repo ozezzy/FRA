@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">IWS</a>
+        {% if session['logged_in'] %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/list">List features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/request">Request features</a></li>
+                </li>
+            </ul>
+            <form class="form-inline ">
+                <a class="nav-link" href="/logout">Logout</a></li>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</nav>
