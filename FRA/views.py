@@ -1,14 +1,8 @@
-from flask import Flask, render_template, request, url_for, redirect, session, jsonify
-from flask_sqlalchemy import SQLAlchemy
-import os
-import datetime
+from flask import render_template, request, url_for, redirect, flash, session, jsonify
 import json
-import hashlib
-import binascii
 
-# model
-from model import app, db, Feature, User, hash_password
-
+from FRA.models import Feature, User
+from FRA import app, db
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -19,12 +13,12 @@ def login():
 
         try:
             user = User.query.filter_by(
-                username=USERNAME, password=hash_password(PASSWORD)).first()
+                username=USERNAME, password=User.hash_password(PASSWORD)).first()
             if user:
                 session['logged_in'] = True
                 return redirect(url_for('list_features'))
             else:
-                error = 'invalid username or password'
+                error = 'Invalid username or password'
         except:
             error = 'server not reachable'
 
@@ -95,8 +89,3 @@ def getPriority():
     features = Feature.query.filter_by(client=client).all()
     features = list(map(lambda ft: (ft.client_priority, ft.title), features))
     return jsonify(features)
-
-
-if __name__ == "__main__":
-    app.secret_key = os.urandom(12)
-    app.run(debug=True)

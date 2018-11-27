@@ -1,11 +1,12 @@
 # instantiate db and seed a user
 
-from model import db, User, hash_password
+from FRA.models import User
+from FRA import db
 
 
 def seed():
+    user = User(username='admin', password=User.hash_password('password'))
     db.create_all()
-    user = User(username='admin', password=hash_password('password'))
     db.session.add(user)
     db.session.commit()
 
