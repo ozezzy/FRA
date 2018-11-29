@@ -18,8 +18,18 @@ Features
 - Jquery
 - Bootstrap
 
-#### Hosted at
+## Usage
 The app is hosted at http://35.237.45.209/
+
+#### list features page
+- Login with "admin" and "password" as username and password.
+- The table on list features page is a paginated list of requested features. The table can be sorted by clicking the header on the column to sort by.
+- Click on any row to see more details regarding the feature
+#### request features page
+- Select a client to populate the priority select field
+- The default value on the select is the next available on the Client's priorities of pending features. Other options show the title of the feature that has the priority assigned
+- To put current priority up, assign it the priority value, and other requests' priorities will auto adjust
+- Click submit when you have filled all field. A message will show success and the request will be available on the features list page.
 
 ## Deployment:
 
