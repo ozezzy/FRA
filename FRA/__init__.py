@@ -8,5 +8,6 @@ app.config.from_object('config.DevelopmentConfig')
 db = SQLAlchemy(app)
 
 # initialise db
+db.create_all()
 
 from FRA import views
