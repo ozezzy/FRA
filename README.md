@@ -19,13 +19,36 @@ Features
 - Bootstrap
 
 #### Hosted at
-App is hosted at https://my-feature-request.herokuapp.com
+App is hosted at https://http://35.237.45.209/
 
-#### Build Setup
+## Deployment:
 
 clone repo and cd into directory
 
 `git clone https://github.com/ozezzy/FRA`
+
+`cd FRA`
+
+change the value of `SQLALCHEMY_DATABASE_URI` in `config.py` to URI of DB you would like to use.
+If not chaged, the app will deploy successfully using SQLite but you will not be able to create features
+run deploy script.
+
+Note: the app is tested with portgress, will wor with any dp but the driver reqirement will need to be added to requirements.txt
+
+#### `sudo ./deploy.sh`
+
+Wait for till you see "Deployment COMPLETE" and you are good to go.
+(Deployment script tested on ubuntu16 and ubunru18)
+
+
+
+## Dev Setup
+
+clone repo and cd into directory
+
+`git clone https://github.com/ozezzy/FRA`
+
+and checkout development branch
 
 #### install dependencies
 

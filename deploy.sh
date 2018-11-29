@@ -1,7 +1,8 @@
 #!/bin/sh
-WWWPATH=/var/www/FRA
+WWWPATH=/var/www
 SITE_CONF_PATH=/etc/apache2/sites-available/FRA.conf
 
+#content of WSGI file
 WSGI_FILE=$(cat <<-EndOfMessage
 import os,sys
 
@@ -13,6 +14,7 @@ if __name__ == "__main__":
 EndOfMessage
 )
 
+#content of apache site-available/FRA
 SITE_CONF=$(cat <<-EndOfMessage
 <VirtualHost *:80>
         WSGIDaemonProcess FRA python-home=/var/www/FRA/venv/
@@ -42,15 +44,14 @@ then
 fi
 
 echo "starting deployment ..."
-echo "...checking python"
+echo "checking python ..."
 
-python=`which python3.6`
-if [ "$python" == "" ]; then
+if [ !`which python3` ]; then
     echo "...installing python ..."
     { 
 
-        sudo apt-get update
-        sudo apt-get install python3.6
+        sudo apt-get update -y
+        sudo apt-get install python3 -y
 
 
     } || {
@@ -61,24 +62,23 @@ else
         echo "python3.6 found."
 fi
 
-pip=`which pip`
-if [ "$pip" == "" ]; then
+
+if [ !`which pip` ]; then
     {
         echo "installing pip ..."
-    sudo apt install python-pip
+        sudo apt install python-pip -y
     }||{
-    echo "pip installation failed "
-    exit 1
+        echo "pip installation failed "
+        exit 1
     }
 else
     echo "pip installation found"
 fi
 
-venv=`which virtualenv`
-if [ "$venv" == "" ]; then
+if [ !`which virtualenv` ]; then
     echo "installing virtualenv ..."
     { 
-    pip install virtualenv
+    	sudo apt install virtualenv -y
     } || {
         echo "virtual env installation failed"
         exit 1
@@ -87,44 +87,58 @@ else
         echo "virtualenv found"
 fi
 
-#create /var/www if not exixting
+#create /var/www
 sudo mkdir -p $WWWPATH
 
 if [ ! -d "./FRA" ]; then
    echo "main project file FRA missing"
    exit 1
 fi
-sudo cp -r ./FRA $WWWPATH
-virtualenv -p python3 $WWWPATH"venv"
-source $WWWPATH"venv/bin/activate"
+
+if [ -d "/var/www/FRA" ]; then
+    sudo rm -r /var/www/FRA
+fi
+
+sudo cp -r ../FRA $WWWPATH"/FRA"
+
+virtualenv -p python3 $WWWPATH"/FRA/venv"
+source $WWWPATH"/FRA/venv/bin/activate"
 {
     echo "installing requirements ..."
-    pip install -r requirements.txt 
+  sudo  $WWWPATH"/FRA/venv/bin/pip" install -r $WWWPATH"/FRA/requirements.txt" 
 }||{
-    echo "wrong package in requirements.tex"
+    echo "wrong package in requirements.tet"
     exit 0
 }
-echo "$WWWPATH"
-sudo echo  "$WSGI_FILE" > $WWWPATH"/app.wsgi"
+#run seed user
+$WWWPATH"/FRA/venv/bin/python" $WWWPATH"/FRA/seed.py"
+sudo echo  "$WSGI_FILE" > $WWWPATH"/FRA/app.wsgi"
 
 ##apache2
-apache=`which apache2`
-if [ "$apache" == "" ]; then
+if [ !`which apache2` ]; then
     {
         echo "installing apache2 ..."
-        sudo apt install apache2
+        sudo apt install apache2 -y
     }||{
         echo "apache installation failed"
     }
 fi
 
-{apt-get install libapache2-mod-wsgi}||{echo "python3 wsgi installation failed"}
-#insatll python3 wsgi module
-sudo apt-get install libapache2-mod-wsgi-py3
+ #insatll python3 wsgi module
+{
+   sudo apt-get install libapache2-mod-wsgi-py3 -y
+}||{
+    echo "python3 wsgi installation failed"
+    exit 1
+}
+
 #enable wsgi module
-sudo a2enmod 
+sudo a2enmod wsgi
 
 sudo echo  "$SITE_CONF" > $SITE_CONF_PATH
+#desable deafult 
+sudo a2dissite 000-default.conf
+
 #enable siteconf
 sudo a2ensite FRA.conf
 
@@ -134,4 +148,6 @@ sudo systemctl reload apache2
 #restart apache
 sudo service apache2 restart 
 
-echo "$venv"
+echo "Deployment COMPLETE"
+echo "    thank you"
+exit 0
