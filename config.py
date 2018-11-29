@@ -14,9 +14,6 @@ class TestConfig(BaseConfig):
     DEBUG = True
     TESTING = True
     WTF_CSRF_ENABLED = False
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////' + \
-    os.path.join(basedir, "test.db")
 
 
 class DevelopmentConfig(BaseConfig):
@@ -25,3 +22,4 @@ class DevelopmentConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'postgres://lvxargangazpdj:07a21479e345a468d8f2f21884bd3853a366b42f05618485097c6c09eedc744b@ec2-54-235-73-241.compute-1.amazonaws.com:5432/d2t06euusmki4k'
