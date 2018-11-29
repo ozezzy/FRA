@@ -41,15 +41,16 @@ clone repo and cd into the directory
 
 change the value of `SQLALCHEMY_DATABASE_URI` in `config.py` to URI of DB you would like to use.
 If not changed, the app will deploy successfully using SQLite but you will not be able to create features
-run deploy script.
 
-Note: the app is tested with Postgres, will work with any database but the driver requirement will need to be added to requirements.txt
+#### Run deployment script.
 
 #### `sudo ./deploy.sh`
 
 Wait till you see "Deployment COMPLETE" and you are good to go.
 
 (Deployment script tested on ubuntu16 and ubuntu18)
+
+Note: the app is tested with Postgres database. It will work with any database but the driver requirement will need to be added to `requirements.txt`
 
 
 
