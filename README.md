@@ -19,7 +19,7 @@ Features
 - Bootstrap
 
 ## Usage
-The app is hosted at http://35.237.45.209/
+The app is hosted at https://my-feature-request.herokuapp.com
 
 #### list features page
 - Login with "admin" and "password" as username and password.
