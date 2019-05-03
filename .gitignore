@@ -4,4 +4,4 @@ venv
 __pycache__
 feature_requests.db
 tests/
-FRA/__init__.pyc
+.venv_FRA/
